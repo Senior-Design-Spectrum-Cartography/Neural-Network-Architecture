@@ -1,0 +1,13 @@
+# PyTorch & Torchvision
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Data Manipulation & Arrays
+numpy>=1.23.0
+pandas>=1.5.0
+
+# Image Processing
+Pillow>=9.0.0
+
+# Optional: Scikit-learn (if you need evaluation metrics like MSE/MAE later)
+scikit-learn>=1.0.2
