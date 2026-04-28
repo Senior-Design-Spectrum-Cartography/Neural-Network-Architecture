@@ -7,11 +7,11 @@ The pipelines are built to handle two distinct data formats—**Parquet** files 
 ## Repository Contents
 
 * [`ConvMAE_Parquet_Pretrain.ipynb`](./ConvMAE_Parquet_Pretrain.ipynb)
-    * **Data Input:** Parquet files, where each file contains a single sample with a flat `map` column of 810,000 `float64` dBm values (representing a 900×900 grid).
+    * **Data Input:** Parquet files, where each file contains a single sample with a flat `map` column of 810,000 `float64` dBm values (representing a 900×900, 512x512, or 256x256 grid).
     * **Processing:** Dynamically reshapes the array, normalizes the dBm values to a `[0, 1]` range, and renders them on-the-fly into RGB images using a Jet colormap.
     * **Use Case:** Best when working directly with raw simulation output or unprocessed sensor data.
 * [`ConvMAE_PNG_Pretrain.ipynb`](./ConvMAE_PNG_Pretrain.ipynb)
-    * **Data Input:** Pre-rendered 900×900 px PNG images.
+    * **Data Input:** Pre-rendered 900×900, 512x512, or 256x256  px PNG images.
     * **Processing:** Leverages a standard PyTorch `ImageFolder` structure with symbolic links for train/val/test splits to efficiently load image data.
     * **Use Case:** Best when the spatial data has already been rendered into heatmap visuals.
 
