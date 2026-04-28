@@ -4,7 +4,7 @@ This repository contains two complete, self-contained Google Colab Jupyter Noteb
 
 The pipelines are built to handle two distinct data formats—**Parquet** files containing raw scalar data and **PNG** images containing pre-rendered heatmaps. Both notebooks manage environment setup, dataset partitioning, model training, and performance visualization.
 
-## 📁 Repository Contents
+## Repository Contents
 
 * [`ConvMAE_Parquet_Pretrain.ipynb`](./ConvMAE_Parquet_Pretrain.ipynb)
     * **Data Input:** Parquet files, where each file contains a single sample with a flat `map` column of 810,000 `float64` dBm values (representing a 900×900 grid).
@@ -15,7 +15,7 @@ The pipelines are built to handle two distinct data formats—**Parquet** files 
     * **Processing:** Leverages a standard PyTorch `ImageFolder` structure with symbolic links for train/val/test splits to efficiently load image data.
     * **Use Case:** Best when the spatial data has already been rendered into heatmap visuals.
 
-## ✨ Key Features
+## Key Features
 
 * **Automated Environment & Patching:** Both notebooks automatically clone the [Alpha-VL/ConvMAE](https://github.com/Alpha-VL/ConvMAE) repository and apply critical patches to ensure compatibility with modern deep learning environments:
     * Replaces deprecated `np.float` with `np.float32` (NumPy 1.24+).
@@ -32,7 +32,7 @@ The pipelines are built to handle two distinct data formats—**Parquet** files 
     * Log-Scale Convergence
 * **Automated Logging:** Exports summary statistics to a CSV log and manages checkpoint saving dynamically.
 
-## 🚀 Usage
+## Usage
 
 1.  **Open in Colab:** Upload the desired notebook to Google Colab.
 2.  **Mount Drive:** The notebooks expect your datasets to be stored in Google Drive under:
@@ -45,7 +45,7 @@ The pipelines are built to handle two distinct data formats—**Parquet** files 
     * `EPOCHS = 50`
 4.  **Run All:** Execute the cells. The notebook will provision the GPU, install dependencies, prepare the data, and launch the single-GPU pre-training script.
 
-## 🛠 Dependencies
+## Dependencies
 
 The notebooks handle the installation of required packages natively via `pip`. Core dependencies include:
 * `torch` & `torchvision` (PyTorch 2.x compatible)
