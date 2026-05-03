@@ -22,7 +22,7 @@ This repository includes four distinct architectures benchmarked against one ano
 1. **Baseline CNN:** A standard convolutional neural network. Fast convergence, but struggles with high sparsity and fails to extrapolate global context from highly localized signal pockets.
 2. **Graph Neural Network (GNN):** Treats pixels as nodes and physical distance as edges.
 3. **Reconstructive Masked Autoencoder (RecMAE / ConvMAE):** Utilizes standard transformers with tokenized patches to reconstruct missing data. 
-4. **PartialConvMAE (Proposed & Final):** Our novel architecture. It integrates *partial convolutional layers* into the MAE framework. Standard convolutions treat masked/unexplored regions (padded with zeros) as valid data, skewing results. Partial convolutions ensure that *only* physically captured HackRF measurements inform the feature extraction and spatial reconstruction.
+4. **PartialConvMAE (Proposed & Final):** Our novel architecture. It integrates *partial convolutional layers* into the MAE framework. Standard convolutions treat masked/unexplored regions (padded with zeros) as valid data, skewing results. Partial convolutions ensure that *only* pvhysically captured HackRF measurements inform the feature extraction and spatial reconstruction.
 
 ## Project Structure
 ```text
