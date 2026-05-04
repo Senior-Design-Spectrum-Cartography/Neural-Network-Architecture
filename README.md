@@ -22,16 +22,17 @@ This repository includes four distinct architectures benchmarked against one ano
 1. **Baseline CNN:** A standard convolutional neural network. Fast convergence, but struggles with high sparsity and fails to extrapolate global context from highly localized signal pockets.
 2. **Graph Neural Network (GNN):** Treats pixels as nodes and physical distance as edges.
 3. **Reconstructive Masked Autoencoder (RecMAE / ConvMAE):** Utilizes standard transformers with tokenized patches to reconstruct missing data. 
-4. **PartialConvMAE (Proposed & Final):** Our novel architecture. It integrates *partial convolutional layers* into the MAE framework. Standard convolutions treat masked/unexplored regions (padded with zeros) as valid data, skewing results. Partial convolutions ensure that *only* pvhysically captured HackRF measurements inform the feature extraction and spatial reconstruction.
+4. **PartialConvMAE (Proposed & Final):** Our novel architecture. It integrates *partial convolutional layers* into the MAE framework. Standard convolutions treat masked/unexplored regions (padded with zeros) as valid data, skewing results. Partial convolutions ensure that *only* physically captured HackRF measurements inform the feature extraction and spatial reconstruction.
 
 ## Project Structure
 ```text
 ├── data/                  # Scripts for Nvidia Sionna RT pipeline
 ├── models/
-│   ├── baseline_cnn.py    # Standard PyTorch CNN
-│   ├── gnn_spectrum.py    # Node/Edge based spectral network
-│   ├── conv_mae.py        # Standard Masked Autoencoder
-│   └── partial_conv_mae.py# Final architecture w/ partial convolutions
+│   ├── CNN/               # Standard PyTorch CNN
+│   ├── ConvMAE/           # Standard Masked Autoencoder
+│   ├── GNN/               # Node/Edge based spectral network
+│   ├── U-Net/             # U-Net implementation (CNN-based)
+│   └── PartialConvMAE/    # Final architecture w/ partial convolutions
 ├── train.py               # Main training loop with hyperparameter tuning
 ├── evaluate.py            # Ablation study benchmarking (MSE, RMSE, Latency)
 └── export_tensorrt.py     # Script to export the model to ONNX/TensorRT for Jetson
