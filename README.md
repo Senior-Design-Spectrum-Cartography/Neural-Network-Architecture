@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
-This repository contains the deep learning models designed to reconstruct complete, high-fidelity spatio-temporal spectrum maps from noisy, sparse RF measurements. Developed for DEVCOM ARL, the architecture acts as the intelligence layer for an autonomous UAS/UGV navigating environments where exhaustive RF sampling is strategically or physically impossible.
+This repository contains the deep learning models designed to reconstruct complete, high-fidelity spatio-temporal spectrum maps from noisy, sparse RF measurements. Developed for UCF Senior Design, the architecture acts as the intelligence layer for an autonomous UAS/UGV navigating environments where exhaustive RF sampling is strategically or physically impossible.
 
 ## Dataset Generation
 Due to the scarcity of classified adversarial RF data, the models are trained from scratch using a highly realistic synthetic dataset generated via **Nvidia Sionna RT**. 
