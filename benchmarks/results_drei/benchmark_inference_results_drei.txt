@@ -1,0 +1,127 @@
+root@ubuntu:/devcom_workspace/scripts# python3 ablation_inference_benchmark.py --test-dir /devcom_workspace/data/data_256_inference --engines-dir ./engines --weights-dir ./checkpoints --out-dir ./benchmark_results_drei --max-samples 10000
+======================================================================
+  JETSON ORIN NANO — RADIO-MAP ABLATION INFERENCE BENCHMARK
+======================================================================
+  Device       : cuda
+  Test dir     : /devcom_workspace/data/data_256_inference
+  Unseen files : 10000
+  Models       : ['CNN', 'WNet', 'PartialConvMAE', 'GNN']
+  Backend      : auto
+  Accuracy tol : 1.0 dB
+
+======================================================================
+  BENCHMARK: CNN
+======================================================================
+  backend    : TensorRT  (./engines/CNN.engine)
+    1000/10000  lat=8.93ms  rmse_db=22.150
+    2000/10000  lat=8.80ms  rmse_db=20.581
+    3000/10000  lat=8.87ms  rmse_db=22.798
+    4000/10000  lat=8.75ms  rmse_db=22.504
+    5000/10000  lat=9.06ms  rmse_db=23.185
+    6000/10000  lat=8.74ms  rmse_db=22.809
+    7000/10000  lat=9.08ms  rmse_db=24.509
+    8000/10000  lat=8.75ms  rmse_db=21.584
+    9000/10000  lat=9.08ms  rmse_db=23.420
+    10000/10000  lat=8.75ms  rmse_db=21.921
+
+  --- CNN results (unseen data, n=10000) ---
+    latency   : 8.910 ms  (median 8.745, p95 8.881)
+    throughput: 112.2 FPS
+    gpu compute: 8.910 ms
+    MSE       : 0.04571   RMSE: 0.20507   MAE: 0.15165
+    RMSE(dB)  : 22.558   MAE(dB): 16.682
+    accuracy  : 10.85% (within 1.0 dB)
+    SSIM      : 0.5948   PSNR: 14.08 dB
+
+======================================================================
+  BENCHMARK: WNet
+======================================================================
+  backend    : TensorRT  (./engines/WNet.engine)
+    1000/10000  lat=23.50ms  rmse_db=16.164
+    2000/10000  lat=23.15ms  rmse_db=16.231
+    3000/10000  lat=18.92ms  rmse_db=17.136
+    4000/10000  lat=18.82ms  rmse_db=16.792
+    5000/10000  lat=18.82ms  rmse_db=17.125
+    6000/10000  lat=18.82ms  rmse_db=17.082
+    7000/10000  lat=19.17ms  rmse_db=17.085
+    8000/10000  lat=18.83ms  rmse_db=16.766
+    9000/10000  lat=18.88ms  rmse_db=16.092
+    10000/10000  lat=18.82ms  rmse_db=16.101
+
+  --- WNet results (unseen data, n=10000) ---
+    latency   : 19.787 ms  (median 18.825, p95 23.165)
+    throughput: 50.5 FPS
+    gpu compute: 19.787 ms
+    MSE       : 0.02307   RMSE: 0.14985   MAE: 0.10341
+    RMSE(dB)  : 16.483   MAE(dB): 11.375
+    accuracy  : 17.14% (within 1.0 dB)
+    SSIM      : 0.7310   PSNR: 16.61 dB
+
+======================================================================
+  BENCHMARK: PartialConvMAE
+======================================================================
+  backend    : TensorRT  (./engines/PartialConvMAE.engine)
+    1000/10000  lat=13.29ms  rmse_db=14.485
+    2000/10000  lat=13.02ms  rmse_db=14.827
+    3000/10000  lat=13.02ms  rmse_db=15.205
+    4000/10000  lat=13.02ms  rmse_db=15.008
+    5000/10000  lat=13.03ms  rmse_db=15.195
+    6000/10000  lat=13.02ms  rmse_db=15.267
+    7000/10000  lat=13.14ms  rmse_db=14.470
+    8000/10000  lat=13.02ms  rmse_db=15.296
+    9000/10000  lat=13.02ms  rmse_db=14.029
+    10000/10000  lat=13.02ms  rmse_db=14.573
+
+  --- PartialConvMAE results (unseen data, n=10000) ---
+    latency   : 13.154 ms  (median 13.020, p95 13.094)
+    throughput: 76.0 FPS
+    gpu compute: 13.154 ms
+    MSE       : 0.01825   RMSE: 0.13224   MAE: 0.09877
+    RMSE(dB)  : 14.546   MAE(dB): 10.865
+    accuracy  : 6.13% (within 1.0 dB)
+    SSIM      : 0.7683   PSNR: 17.79 dB
+
+======================================================================
+  BENCHMARK: GNN
+======================================================================
+  backend    : PyTorch   (./checkpoints/GNN_best.pth)
+    1000/10000  lat=19.79ms  rmse_db=31.105
+    2000/10000  lat=19.68ms  rmse_db=31.869
+    3000/10000  lat=19.77ms  rmse_db=33.089
+    4000/10000  lat=19.53ms  rmse_db=32.648
+    5000/10000  lat=19.83ms  rmse_db=32.368
+    6000/10000  lat=19.56ms  rmse_db=33.687
+    7000/10000  lat=19.77ms  rmse_db=32.410
+    8000/10000  lat=19.50ms  rmse_db=32.375
+    9000/10000  lat=19.81ms  rmse_db=31.212
+    10000/10000  lat=19.52ms  rmse_db=32.174
+
+  --- GNN results (unseen data, n=10000) ---
+    latency   : 20.113 ms  (median 19.554, p95 23.362)
+    throughput: 49.7 FPS
+    MSE       : 0.08781   RMSE: 0.28969   MAE: 0.19627
+    RMSE(dB)  : 31.866   MAE(dB): 21.590
+    accuracy  : 53.44% (within 1.0 dB)
+    SSIM      : 0.0209   PSNR: 10.99 dB
+
+======================================================================
+  GENERATING VISUALIZATIONS
+======================================================================
+  saved panel: ./benchmark_results_drei/panel_CNN.png
+  saved panel: ./benchmark_results_drei/panel_WNet.png
+  saved panel: ./benchmark_results_drei/panel_PartialConvMAE.png
+  saved panel: ./benchmark_results_drei/panel_GNN.png
+  saved charts: ./benchmark_results_drei/compare_quality.png, ./benchmark_results_drei/compare_speed_efficiency.png, ./benchmark_results_drei/compare_latency_dist.png, ./benchmark_results_drei/compare_pareto_quality_vs_speed.png
+  saved tables: ./benchmark_results_drei/results.csv, ./benchmark_results_drei/results.json
+
+======================================================================
+  FINAL LEADERBOARD (unseen data)
+======================================================================
+  Model                FPS   Lat(ms)  RMSE(dB)    Acc%    SSIM
+  PartialConvMAE      76.0    13.154    14.546    6.13  0.7683
+  WNet                50.5    19.787    16.483   17.14  0.7310
+  CNN                112.2     8.910    22.558   10.85  0.5948
+  GNN                 49.7    20.113    31.866   53.44  0.0209
+
+  All outputs written to: /devcom_workspace/scripts/benchmark_results_drei
+
