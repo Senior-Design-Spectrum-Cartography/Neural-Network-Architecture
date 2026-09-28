@@ -1,0 +1,125 @@
+root@ubuntu:/devcom_workspace/scripts# python ablation_inference_benchmark.py --test-dir /devcom_workspace/data/data_256_inference --engines-dir ./engines --weights-dir ./checkpoints --out-dir ./benchmark_results --max-samples 500
+======================================================================
+  JETSON ORIN NANO — RADIO-MAP ABLATION INFERENCE BENCHMARK
+======================================================================
+  Device       : cuda
+  Test dir     : /devcom_workspace/data/data_256_inference
+  Unseen files : 500
+  Models       : ['CNN', 'WNet', 'PartialConvMAE', 'GNN']
+  Backend      : auto
+  Accuracy tol : 1.0 dB
+
+======================================================================
+  BENCHMARK: CNN
+======================================================================
+[06/11/2026-00:53:42] [TRT] [W] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+  backend    : TensorRT  (./engines/CNN.engine)
+    50/500  lat=8.94ms  rmse_db=22.348
+    100/500  lat=9.00ms  rmse_db=25.798
+    150/500  lat=9.19ms  rmse_db=23.760
+    200/500  lat=9.27ms  rmse_db=22.316
+    250/500  lat=9.01ms  rmse_db=22.164
+    300/500  lat=9.16ms  rmse_db=22.867
+    350/500  lat=8.86ms  rmse_db=21.781
+    400/500  lat=9.30ms  rmse_db=21.609
+    450/500  lat=9.25ms  rmse_db=22.682
+    500/500  lat=8.97ms  rmse_db=21.659
+
+  --- CNN results (unseen data, n=500) ---
+    latency   : 9.093 ms  (median 8.731, p95 8.995)
+    throughput: 110.0 FPS
+    gpu compute: 9.093 ms
+    MSE       : 0.04632   RMSE: 0.20635   MAE: 0.15257
+    RMSE(dB)  : 22.698   MAE(dB): 16.783
+    accuracy  : 11.32% (within 1.0 dB)
+    SSIM      : 0.5929   PSNR: 14.03 dB
+
+======================================================================
+  BENCHMARK: WNet
+======================================================================
+  backend    : PyTorch   (./checkpoints/WNet_best.pth)
+    50/500  lat=43.19ms  rmse_db=16.280
+    100/500  lat=43.21ms  rmse_db=16.977
+    150/500  lat=42.98ms  rmse_db=16.874
+    200/500  lat=43.21ms  rmse_db=16.577
+    250/500  lat=43.23ms  rmse_db=16.266
+    300/500  lat=42.94ms  rmse_db=16.561
+    350/500  lat=43.14ms  rmse_db=16.300
+    400/500  lat=43.18ms  rmse_db=17.105
+    450/500  lat=43.20ms  rmse_db=16.212
+    500/500  lat=42.85ms  rmse_db=16.354
+
+  --- WNet results (unseen data, n=500) ---
+    latency   : 43.113 ms  (median 42.537, p95 47.499)
+    throughput: 23.2 FPS
+    MSE       : 0.02322   RMSE: 0.15046   MAE: 0.10406
+    RMSE(dB)  : 16.551   MAE(dB): 11.447
+    accuracy  : 17.05% (within 1.0 dB)
+    SSIM      : 0.7318   PSNR: 16.57 dB
+
+======================================================================
+  BENCHMARK: PartialConvMAE
+======================================================================
+  backend    : PyTorch   (./checkpoints/PartialConvMAE_best.pth)
+    50/500  lat=27.56ms  rmse_db=14.303
+    100/500  lat=28.10ms  rmse_db=14.069
+    150/500  lat=25.45ms  rmse_db=14.549
+    200/500  lat=25.51ms  rmse_db=14.669
+    250/500  lat=25.44ms  rmse_db=14.428
+    300/500  lat=25.17ms  rmse_db=14.649
+    350/500  lat=25.33ms  rmse_db=14.648
+    400/500  lat=25.32ms  rmse_db=15.563
+    450/500  lat=25.54ms  rmse_db=14.245
+    500/500  lat=25.54ms  rmse_db=14.580
+
+  --- PartialConvMAE results (unseen data, n=500) ---
+    latency   : 25.897 ms  (median 25.063, p95 29.103)
+    throughput: 38.6 FPS
+    MSE       : 0.01832   RMSE: 0.13246   MAE: 0.09879
+    RMSE(dB)  : 14.570   MAE(dB): 10.867
+    accuracy  : 6.19% (within 1.0 dB)
+    SSIM      : 0.7696   PSNR: 17.78 dB
+
+======================================================================
+  BENCHMARK: GNN
+======================================================================
+  backend    : PyTorch   (./checkpoints/GNN_best.pth)
+    50/500  lat=23.31ms  rmse_db=30.969
+    100/500  lat=20.27ms  rmse_db=31.575
+    150/500  lat=20.15ms  rmse_db=31.946
+    200/500  lat=20.08ms  rmse_db=32.387
+    250/500  lat=20.16ms  rmse_db=32.233
+    300/500  lat=20.10ms  rmse_db=31.795
+    350/500  lat=20.11ms  rmse_db=32.652
+    400/500  lat=20.14ms  rmse_db=33.595
+    450/500  lat=20.20ms  rmse_db=31.792
+    500/500  lat=20.05ms  rmse_db=31.983
+
+  --- GNN results (unseen data, n=500) ---
+    latency   : 20.457 ms  (median 19.684, p95 24.274)
+    throughput: 48.9 FPS
+    MSE       : 0.08901   RMSE: 0.29175   MAE: 0.19846
+    RMSE(dB)  : 32.093   MAE(dB): 21.831
+    accuracy  : 53.12% (within 1.0 dB)
+    SSIM      : 0.0207   PSNR: 10.92 dB
+
+======================================================================
+  GENERATING VISUALIZATIONS
+======================================================================
+  saved panel: ./benchmark_results/panel_CNN.png
+  saved panel: ./benchmark_results/panel_WNet.png
+  saved panel: ./benchmark_results/panel_PartialConvMAE.png
+  saved panel: ./benchmark_results/panel_GNN.png
+  saved charts: ./benchmark_results/compare_quality.png, ./benchmark_results/compare_speed_efficiency.png, ./benchmark_results/compare_latency_dist.png, ./benchmark_results/compare_pareto_quality_vs_speed.png
+  saved tables: ./benchmark_results/results.csv, ./benchmark_results/results.json
+
+======================================================================
+  FINAL LEADERBOARD (unseen data)
+======================================================================
+  Model                FPS   Lat(ms)  RMSE(dB)    Acc%    SSIM
+  PartialConvMAE      38.6    25.897    14.570    6.19  0.7696
+  WNet                23.2    43.113    16.551   17.05  0.7318
+  CNN                110.0     9.093    22.698   11.32  0.5929
+  GNN                 48.9    20.457    32.093   53.12  0.0207
+
+  All outputs written to: /devcom_workspace/scripts/benchmark_results
